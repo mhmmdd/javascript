@@ -1,44 +1,44 @@
-# Airbnb JavaScript Style Guide() {
+# Airbnb JavaScript Stil Rehberi() {
 
-*A mostly reasonable approach to JavaScript*
+*JavaScript'e daha mantıklı yaklaşım için*
 
 
-## Table of Contents
+## İçindekiler
 
-  1. [Types](#types)
-  1. [Objects](#objects)
-  1. [Arrays](#arrays)
-  1. [Strings](#strings)
-  1. [Functions](#functions)
-  1. [Properties](#properties)
-  1. [Variables](#variables)
+  1. [Tipler](#types)
+  1. [Object'ler](#objects)
+  1. [Diziler](#arrays)
+  1. [String'ler](#strings)
+  1. [Fonksiyonlar](#functions)
+  1. [Özellikler](#properties)
+  1. [Değişkenler](#variables)
   1. [Hoisting](#hoisting)
-  1. [Conditional Expressions & Equality](#conditional-expressions--equality)
-  1. [Blocks](#blocks)
-  1. [Comments](#comments)
-  1. [Whitespace](#whitespace)
-  1. [Commas](#commas)
-  1. [Semicolons](#semicolons)
-  1. [Type Casting & Coercion](#type-casting--coercion)
-  1. [Naming Conventions](#naming-conventions)
-  1. [Accessors](#accessors)
-  1. [Constructors](#constructors)
-  1. [Events](#events)
-  1. [Modules](#modules)
+  1. [Koşullu İfadeler & Eşitlik](#conditional-expressions--equality)
+  1. [Bloklar](#blocks)
+  1. [Yorumlar](#comments)
+  1. [Boşluk](#whitespace)
+  1. [Virgüller](#commas)
+  1. [Noktalı Virgüller](#semicolons)
+  1. [Tip Dönüşümü](#type-casting--coercion)
+  1. [İsimlendirmeler](#naming-conventions)
+  1. [Erişimciler](#accessors)
+  1. [Kurucular](#constructors)
+  1. [Olaylar](#events)
+  1. [Modüller](#modules)
   1. [jQuery](#jquery)
-  1. [ECMAScript 5 Compatibility](#ecmascript-5-compatibility)
-  1. [Testing](#testing)
-  1. [Performance](#performance)
-  1. [Resources](#resources)
+  1. [ECMAScript 5 Uyumluluğu](#ecmascript-5-compatibility)
+  1. [Test Etme](#testing)
+  1. [Performans](#performance)
+  1. [Kaynaklar](#resources)
   1. [In the Wild](#in-the-wild)
-  1. [Translation](#translation)
+  1. [Çeviriler](#translation)
   1. [The JavaScript Style Guide Guide](#the-javascript-style-guide-guide)
-  1. [Contributors](#contributors)
-  1. [License](#license)
+  1. [Katkıda Bulunanlar](#contributors)
+  1. [Lisans](#license)
 
-## Types
+## Tipler
 
-  - **Primitives**: When you access a primitive type you work directly on its value
+  - **İlkeller**: Bir ilkel tipe erişmek istediğinizde doğrudan onun değeri ile çalışın
 
     + `string`
     + `number`
@@ -54,7 +54,7 @@
 
     console.log(foo, bar); // => 1, 9
     ```
-  - **Complex**: When you access a complex type you work on a reference to its value
+  - **Kompleks**: Bir kompleks tipe erişmek istediğinizde onun değeri ile ilişkili bir referans ile çalışın
 
     + `object`
     + `array`
@@ -69,99 +69,99 @@
     console.log(foo[0], bar[0]); // => 9, 9
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ yukarı git](#table-of-contents)**
 
-## Objects
+## Object'ler
 
-  - Use the literal syntax for object creation.
+  - Object oluşturmak için değişmez aslına uygun sözdizimini kullanın.
 
     ```javascript
-    // bad
+    // kötü
     var item = new Object();
 
-    // good
+    // iyi
     var item = {};
     ```
 
-  - Don't use [reserved words](http://es5.github.io/#x7.6.1) as keys. It won't work in IE8. [More info](https://github.com/airbnb/javascript/issues/61)
+  - Key'ler için [rezerve edilmiş kelimeleri](http://es5.github.io/#x7.6.1) kullanmayın. IE8'de çalışmaz. [Daha fazla](https://github.com/airbnb/javascript/issues/61)
 
     ```javascript
-    // bad
+    // kötü
     var superman = {
       default: { clark: 'kent' },
       private: true
     };
 
-    // good
+    // iyi
     var superman = {
       defaults: { clark: 'kent' },
       hidden: true
     };
     ```
 
-  - Use readable synonyms in place of reserved words.
+  - Rezerve edilmiş kelimelerin yerine okunabilir eşanlamlılarını kullanın.
 
     ```javascript
-    // bad
+    // kötü
     var superman = {
       class: 'alien'
     };
 
-    // bad
+    // kötü
     var superman = {
       klass: 'alien'
     };
 
-    // good
+    // iyi
     var superman = {
       type: 'alien'
     };
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ yukarı git](#table-of-contents)**
 
-## Arrays
+## Diziler
 
-  - Use the literal syntax for array creation
+  - Dizi oluşturmak için değişmez sözdizimini kullanın.
 
     ```javascript
-    // bad
+    // kötü
     var items = new Array();
 
-    // good
+    // iyi
     var items = [];
     ```
 
-  - If you don't know array length use Array#push.
+  - Dizi uzunluğunu bilmiyorsanız Array#push kullanın.
 
     ```javascript
     var someStack = [];
 
 
-    // bad
+    // kötü
     someStack[someStack.length] = 'abracadabra';
 
-    // good
+    // iyi
     someStack.push('abracadabra');
     ```
 
-  - When you need to copy an array use Array#slice. [jsPerf](http://jsperf.com/converting-arguments-to-an-array/7)
+  - Bir diziyi kopyalamaya ihtiyaç duyarsanız Array#slice kullanın. [jsPerf](http://jsperf.com/converting-arguments-to-an-array/7)
 
     ```javascript
     var len = items.length,
         itemsCopy = [],
         i;
 
-    // bad
+    // kötü
     for (i = 0; i < len; i++) {
       itemsCopy[i] = items[i];
     }
 
-    // good
+    // iyi
     itemsCopy = items.slice();
     ```
 
-  - To convert an array-like object to an array, use Array#slice.
+  - Bir dizi-benzeri object'i araya çevirmek için, Array#slice kullanın.
 
     ```javascript
     function trigger() {
@@ -170,47 +170,47 @@
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ yukarı git](#table-of-contents)**
 
 
-## Strings
+## String'ler
 
-  - Use single quotes `''` for strings
+  - String'ler için tek tırnak `''` kullanın
 
     ```javascript
-    // bad
+    // kötü
     var name = "Bob Parr";
 
-    // good
+    // iyi
     var name = 'Bob Parr';
 
-    // bad
+    // kötü
     var fullName = "Bob " + this.lastName;
 
-    // good
+    // iyi
     var fullName = 'Bob ' + this.lastName;
     ```
 
-  - Strings longer than 80 characters should be written across multiple lines using string concatenation.
-  - Note: If overused, long strings with concatenation could impact performance. [jsPerf](http://jsperf.com/ya-string-concat) & [Discussion](https://github.com/airbnb/javascript/issues/40)
+  - String'ler 80 karakterden daha uzunsa, `string concatenation` ile bölünmüş satırlar şeklinde yazılmalıdır.
+  - Not: Gerekli kullanımda, uzun string birleştirme işlemleri performansı etkileyebilir. [jsPerf](http://jsperf.com/ya-string-concat) & [Discussion](https://github.com/airbnb/javascript/issues/40)
 
     ```javascript
-    // bad
+    // kötü
     var errorMessage = 'This is a super long error that was thrown because of Batman. When you stop to think about how Batman had anything to do with this, you would get nowhere fast.';
 
-    // bad
+    // kötü
     var errorMessage = 'This is a super long error that was thrown because \
     of Batman. When you stop to think about how Batman had anything to do \
     with this, you would get nowhere \
     fast.';
 
-    // good
+    // iyi
     var errorMessage = 'This is a super long error that was thrown because ' +
       'of Batman. When you stop to think about how Batman had anything to do ' +
       'with this, you would get nowhere fast.';
     ```
 
-  - When programmatically building up a string, use Array#join instead of string concatenation. Mostly for IE: [jsPerf](http://jsperf.com/string-vs-array-concat/2).
+  - Programlı bir şekilde string oluşturmak için, `string concatenation` yerine Array#join kullanın. Çoğunlukla IE için: [jsPerf](http://jsperf.com/string-vs-array-concat/2).
 
     ```javascript
     var items,
@@ -231,7 +231,7 @@
 
     length = messages.length;
 
-    // bad
+    // kötü
     function inbox(messages) {
       items = '<ul>';
 
@@ -242,7 +242,7 @@
       return items + '</ul>';
     }
 
-    // good
+    // iyi
     function inbox(messages) {
       items = [];
 
@@ -254,42 +254,42 @@
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ yukarı git](#table-of-contents)**
 
 
-## Functions
+## Fonksiyonlar
 
-  - Function expressions:
+  - Fonksiyon ifadeleri:
 
     ```javascript
-    // anonymous function expression
+    // anonim fonksiyon ifadesi
     var anonymous = function() {
       return true;
     };
 
-    // named function expression
+    // adlandırılmış fonksiyon ifadesi
     var named = function named() {
       return true;
     };
 
-    // immediately-invoked function expression (IIFE)
+    // direk-çağrılan fonksiyon ifadesi (IIFE)
     (function() {
       console.log('Welcome to the Internet. Please follow me.');
     })();
     ```
 
-  - Never declare a function in a non-function block (if, while, etc). Assign the function to a variable instead. Browsers will allow you to do it, but they all interpret it differently, which is bad news bears.
-  - **Note:** ECMA-262 defines a `block` as a list of statements. A function declaration is not a statement. [Read ECMA-262's note on this issue](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=97).
+  - Bir `non-function` blok (if, while, vb.) içinde asla bir fonksiyon oluşturmayın. Onun yerine fonksiyonu bir değişkene atayın. Tarayıcılar onu yapmana izin verir, fakat farklı yorumlarlar.
+  - **Not:** ECMA-262 bir ifadelerin listesi gibi `block` tanımlar. Bir fonksiyon bildirimi bir ifade değildir. [Bu konu hakkında ECMA-262 notunu okuyun](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=97).
 
     ```javascript
-    // bad
+    // kötü
     if (currentUser) {
       function test() {
         console.log('Nope.');
       }
     }
 
-    // good
+    // iyi
     var test;
     if (currentUser) {
       test = function test() {
@@ -298,25 +298,25 @@
     }
     ```
 
-  - Never name a parameter `arguments`, this will take precedence over the `arguments` object that is given to every function scope.
+  - Bir parametreyi asla `arguments` olarak isimlendirmeyin, her fonksiyon kapsamında verilen `argümanlar` objesi üzerinde öncelik alacaktır.
 
     ```javascript
-    // bad
+    // kötü
     function nope(name, options, arguments) {
-      // ...stuff...
+      // ...bir şeyler...
     }
 
-    // good
+    // iyi
     function yup(name, options, args) {
-      // ...stuff...
+      // ...bir şeyler...
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ yukarı git](#table-of-contents)**
 
 
 
-## Properties
+## Özellikler
 
   - Use dot notation when accessing properties.
 
