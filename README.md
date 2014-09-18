@@ -10,7 +10,7 @@
   1. [Diziler](#arrays)
   1. [String'ler](#strings)
   1. [Fonksiyonlar](#functions)
-  1. [Özellikler](#properties)
+  1. [Nitelikler](#properties)
   1. [Değişkenler](#variables)
   1. [Hoisting](#hoisting)
   1. [Koşullu İfadeler & Eşitlik](#conditional-expressions--equality)
@@ -316,9 +316,9 @@
 
 
 
-## Özellikler
+## Nitelikler
 
-  - Use dot notation when accessing properties.
+  - Niteliklere erişmek için nokta `.` işaretini kullanın.
 
     ```javascript
     var luke = {
@@ -326,14 +326,14 @@
       age: 28
     };
 
-    // bad
+    // kötü
     var isJedi = luke['jedi'];
 
-    // good
+    // iyi
     var isJedi = luke.jedi;
     ```
 
-  - Use subscript notation `[]` when accessing properties with a variable.
+  - Niteliklere bir değişken ile erişmek için köşeli parantez `[]` simgesini kullanın .
 
     ```javascript
     var luke = {
@@ -348,50 +348,50 @@
     var isJedi = getProp('jedi');
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ yukarı git](#table-of-contents)**
 
 
-## Variables
+## Değişkenler
 
-  - Always use `var` to declare variables. Not doing so will result in global variables. We want to avoid polluting the global namespace. Captain Planet warned us of that.
+  - Değişken bildirimleri için her zaman `var` ifadesini kullanın. Bunu yapmamak, değişkenin global değişkenler içinde olmasına neden olacaktır. Global isim uzayını kirletmeyi önlemek istiyoruz. Captain Planet uyardı.
 
     ```javascript
-    // bad
+    // kötü
     superPower = new SuperPower();
 
-    // good
+    // iyi
     var superPower = new SuperPower();
     ```
 
-  - Use one `var` declaration for multiple variables and declare each variable on a newline.
+  - Çoklu değişkenlerde tek bir `var` bildirimi kullanın ve her değişkeni yeni bir satırda bildirin.
 
     ```javascript
-    // bad
+    // kötü
     var items = getItems();
     var goSportsTeam = true;
     var dragonball = 'z';
 
-    // good
+    // iyi
     var items = getItems(),
         goSportsTeam = true,
         dragonball = 'z';
     ```
 
-  - Declare unassigned variables last. This is helpful when later on you might need to assign a variable depending on one of the previous assigned variables.
+  - Atanmamış değişkenleri en sonda bildirin. Önceki atanmış değişkenlerin birine bağlı olan bir değişkene atama yapmanız gerektiği zaman bu faydalıdır .
 
     ```javascript
-    // bad
+    // kötü
     var i, len, dragonball,
         items = getItems(),
         goSportsTeam = true;
 
-    // bad
+    // kötü
     var i, items = getItems(),
         dragonball,
         goSportsTeam = true,
         len;
 
-    // good
+    // iyi
     var items = getItems(),
         goSportsTeam = true,
         dragonball,
@@ -399,15 +399,15 @@
         i;
     ```
 
-  - Assign variables at the top of their scope. This helps avoid issues with variable declaration and assignment hoisting related issues.
+  - Kendi kapsama alanının en üstünde değişkenleri atayın. Bu, değişken bildirimi ve atama kaldırma ile ilgili sorunları önlemek için yardımcı olur.
 
     ```javascript
-    // bad
+    // kötü
     function() {
       test();
       console.log('doing stuff..');
 
-      //..other stuff..
+      //..diğer şeyler..
 
       var name = getName();
 
@@ -418,14 +418,14 @@
       return name;
     }
 
-    // good
+    // iyi
     function() {
       var name = getName();
 
       test();
       console.log('doing stuff..');
 
-      //..other stuff..
+      //..diğer şeyler..
 
       if (name === 'test') {
         return false;
@@ -434,7 +434,7 @@
       return name;
     }
 
-    // bad
+    // kötü
     function() {
       var name = getName();
 
@@ -445,7 +445,7 @@
       return true;
     }
 
-    // good
+    // iyi
     function() {
       if (!arguments.length) {
         return false;
@@ -457,32 +457,32 @@
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ yukarı git](#table-of-contents)**
 
 
 ## Hoisting
 
-  - Variable declarations get hoisted to the top of their scope, their assignment does not.
+  - Değişken bildirimleri kapsama alanının en üstünde hoitsting edildi, onların ataması yapılmamış.
 
     ```javascript
-    // we know this wouldn't work (assuming there
-    // is no notDefined global variable)
+    // Bunun çalışmayacağını biliyoruz(notDefined global
+    // değişkenin bildirilmediğini varsayarsak)
     function example() {
-      console.log(notDefined); // => throws a ReferenceError
+      console.log(notDefined); // => bir ReferenceError fırlatır
     }
 
-    // creating a variable declaration after you
-    // reference the variable will work due to
-    // variable hoisting. Note: the assignment
-    // value of `true` is not hoisted.
+    // değişkene başvuru yaptıktan sonra  
+    // değişken hoisting nedeniyle 
+    // bir değişken bildirimi oluşturma çalışacaktır.
+    // Not: `true` değerinin ataması hoisting edilmemiştir.
     function example() {
       console.log(declaredButNotAssigned); // => undefined
       var declaredButNotAssigned = true;
     }
 
-    // The interpreter is hoisting the variable
-    // declaration to the top of the scope.
-    // Which means our example could be rewritten as:
+    // Çevirmen değişken bildirimini  
+    // kapsamın en üstünde hoisting ediyor. Bizim örneğimizin
+    // şu şekilde yeniden yazılabileceği anlamına geliyor:
     function example() {
       var declaredButNotAssigned;
       console.log(declaredButNotAssigned); // => undefined
@@ -490,7 +490,7 @@
     }
     ```
 
-  - Anonymous function expressions hoist their variable name, but not the function assignment.
+  - Anonim fonksiyon ifadeleri onların değişken adıyla hoisting edilir, ama fonksiyon ataması yok.
 
     ```javascript
     function example() {
