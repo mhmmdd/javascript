@@ -546,145 +546,145 @@
 
   - For more information refer to [JavaScript Scoping & Hoisting](http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting) by [Ben Cherry](http://www.adequatelygood.com/)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ yukarı git](#table-of-contents)**
 
 
 
-## Conditional Expressions & Equality
+## Koşullu İfadeler & Eşitlik
 
-  - Use `===` and `!==` over `==` and `!=`.
-  - Conditional expressions are evaluated using coercion with the `ToBoolean` method and always follow these simple rules:
+  - `==` ve `!=` yerine `===` ve `!==` kullanın.
+  - Koşullu ifadeler `ToBoolean` metodu ile baskı kullanılarak değerlendirilir ve her zaman bu basit kurallarla uyun:
 
-    + **Objects** evaluate to **true**
-    + **Undefined** evaluates to **false**
-    + **Null** evaluates to **false**
-    + **Booleans** evaluate to **the value of the boolean**
-    + **Numbers** evaluate to **false** if **+0, -0, or NaN**, otherwise **true**
-    + **Strings** evaluate to **false** if an empty string `''`, otherwise **true**
+    + **Object'Ler** -> **true**
+    + **Undefined** -> **false**
+    + **Null** -> **false**
+    + **Booleans** -> **boolean'ın değeri**
+    + **Numbers** -> **+0, -0, or NaN** ise **false**, diğer durumlarda **true**
+    + **Strings** -> `''` boş string olursa **false** , diğer durumlarda **true**
 
     ```javascript
     if ([0]) {
       // true
-      // An array is an object, objects evaluate to true
+      // Bir dizi bir object'dir, object'ler true olarak kabul edilir
     }
     ```
 
-  - Use shortcuts.
+  - Kısa yolları kullanın.
 
     ```javascript
-    // bad
+    // kötü
     if (name !== '') {
-      // ...stuff...
+      // ...bir şeyler...
     }
 
-    // good
+    // iyi
     if (name) {
-      // ...stuff...
+      // ...bir şeyler...
     }
 
-    // bad
+    // kötü
     if (collection.length > 0) {
-      // ...stuff...
+      // ...bir şeyler...
     }
 
-    // good
+    // iyi
     if (collection.length) {
-      // ...stuff...
+      // ...bir şeyler...
     }
     ```
 
-  - For more information see [Truth Equality and JavaScript](http://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108) by Angus Croll
+  - Daha fazla bilgi için bknz: [Truth Equality and JavaScript](http://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108) by Angus Croll
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ yukarı git](#table-of-contents)**
 
 
-## Blocks
+## Block'lar
 
-  - Use braces with all multi-line blocks.
+  - Tüm çok satırlı block'lar için süslü parantezleri kullanın.
 
     ```javascript
-    // bad
+    // kötü
     if (test)
       return false;
 
-    // good
+    // iyi
     if (test) return false;
 
-    // good
+    // iyi
     if (test) {
       return false;
     }
 
-    // bad
+    // kötü
     function() { return false; }
 
-    // good
+    // iyi
     function() {
       return false;
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ yukarı git](#table-of-contents)**
 
 
-## Comments
+## Yorumlar
 
-  - Use `/** ... */` for multiline comments. Include a description, specify types and values for all parameters and return values.
+  - Çok satırlı yorumlar için `/** ... */` kullanın. Bir açıklama yazın; tipleri, tüm parametreler için değerleri ve dönen değerleri belirtin.
 
     ```javascript
-    // bad
-    // make() returns a new element
-    // based on the passed in tag name
+    // kötü
+    // verilen tag ismine göre
+    // make() yeni bir element döndürür
     //
     // @param <String> tag
     // @return <Element> element
     function make(tag) {
 
-      // ...stuff...
+      // ...bir şeyler...
 
       return element;
     }
 
     // good
     /**
-     * make() returns a new element
-     * based on the passed in tag name
+     * verilen tag ismine göre
+     * make() yeni bir element döndürür
      *
      * @param <String> tag
      * @return <Element> element
      */
     function make(tag) {
 
-      // ...stuff...
+      // ...bir şeyler...
 
       return element;
     }
     ```
 
-  - Use `//` for single line comments. Place single line comments on a newline above the subject of the comment. Put an empty line before the comment.
+  - Tek satırlı yorumlar için `//` kullanın. Yorumun konusu yukarda gelecek şekilde, tek satırlık yorumları yeni bir satırda yerleştirin. Yorumdan önce boş bir satır bırakın.
 
     ```javascript
-    // bad
-    var active = true;  // is current tab
+    // kötü
+    var active = true;  // aktif olan tab
 
-    // good
-    // is current tab
+    // iyi
+    // aktif olan tab
     var active = true;
 
-    // bad
+    // kötü
     function getType() {
       console.log('fetching type...');
-      // set the default type to 'no type'
+      // varsayılan tipi 'no type' olarak ayarlar
       var type = this._type || 'no type';
 
       return type;
     }
 
-    // good
+    // iyi
     function getType() {
       console.log('fetching type...');
 
-      // set the default type to 'no type'
+      // varsayılan tipi 'no type' olarak ayarlar
       var type = this._type || 'no type';
 
       return type;
@@ -717,25 +717,25 @@
     }
   ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ yukarı git](#table-of-contents)**
 
 
-## Whitespace
+## Boşluk
 
-  - Use soft tabs set to 2 spaces
+  - Soft tab'ları 2 karakter boşluğa ayarlanmış şekilde kullanın 
 
     ```javascript
-    // bad
+    // kötü
     function() {
     ∙∙∙∙var name;
     }
 
-    // bad
+    // kötü
     function() {
     ∙var name;
     }
 
-    // good
+    // iyi
     function() {
     ∙∙var name;
     }
